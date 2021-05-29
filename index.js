@@ -1,21 +1,13 @@
 const express = require('express');
 const app = express();
 
+app.use(express.json());
+
 const pizzas = require("./database/pizzas.json");
 
-const listarTodasAsPizzas = () => {
-    let conteudo = "";
-
-    pizzas.forEach((pizza) => {
-        conteudo += `
-            Sabor: ${pizza.sabor}
-            Categoria: ${pizza.categoria}
-            Preço: ${pizza.preco}
-        `;
-    });
-    
-    return conteudo;
-};
+app.get("/pizzas", (req, res) => {
+    return res.json(pizzas)
+});
 
 const adicionarPizza = function(sabor, categoria, preco){
     const pizzaNova = {
@@ -43,7 +35,6 @@ const buscarPizzas = (sabor) => {
 adicionarPizza("Presunto", "Salgada", 25);
 adicionarPizza("Catupiry", "Salgada", 40);
 
-console.log(listarTodasAsPizzas());
 console.log(buscarPizzas("Brócolis"));
 
 app.listen(3000, () => console.log('O servidor ta on!!!'));
