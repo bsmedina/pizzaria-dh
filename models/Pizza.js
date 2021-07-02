@@ -1,4 +1,5 @@
 const pizzas = require('../database/pizzas.json');
+const fs = require("fs");
 
 const PizzaModel = {
     findAll: () => {
@@ -15,7 +16,7 @@ const PizzaModel = {
     update: (pizza) => {
         const { id } = req.params;
         const { sabor, categoria, preco } = req.body;
-        
+
         const pizzaEncontrada = pizzas.find((pizza) => pizza.id === id);
 
         if (!pizzaEncontrada) {
