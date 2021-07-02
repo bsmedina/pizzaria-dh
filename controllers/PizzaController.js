@@ -1,8 +1,6 @@
-const pizzas = require("../database/pizzas.json");
 const PizzaModel = require('../models/Pizza');
 
 const { v4 } = require("uuid"); // const uuid = require('uuid'); // serve para gerar id aleatorios, o v4 é uma função interna que executa o codigo
-const fs = require("fs"); 
 
 const PizzaController = {
     listar: (req, res) => {
